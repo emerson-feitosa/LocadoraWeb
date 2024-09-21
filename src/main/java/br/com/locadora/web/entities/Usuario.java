@@ -24,14 +24,17 @@ public class Usuario {
     @Column(nullable = false)
     private String senha;
 
+    @Column(nullable = false)
+    private String nome;
+
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false, unique = true)
-    private String cpf;
-
     @Column(nullable = false)
     private String telefone;
+
+    @Column(nullable = false, unique = true)
+    private String cpf;
 
     @Column(unique = true)
     private String cnh;
