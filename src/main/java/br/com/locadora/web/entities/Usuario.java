@@ -1,6 +1,7 @@
 package br.com.locadora.web.entities;
 
 import br.com.locadora.web.enums.StatusUsuario;
+import br.com.locadora.web.enums.TipoUsuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,4 +43,8 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private StatusUsuario statusUsuario;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TipoUsuario tipo;
 }

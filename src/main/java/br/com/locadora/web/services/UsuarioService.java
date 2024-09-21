@@ -14,7 +14,7 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     public CreateUserDto createUser(Usuario entidade){
-        
+
         Usuario usuario = new Usuario();
         usuario.setLogin(entidade.getLogin());
         usuario.setSenha(entidade.getSenha());
@@ -24,6 +24,7 @@ public class UsuarioService {
         usuario.setCpf(entidade.getCpf());
         usuario.setCnh(entidade.getCnh());
         usuario.setStatusUsuario(StatusUsuario.REGULAR);
+        usuario.setTipo(entidade.getTipo());
         usuarioRepository.save(usuario);
 
         return converterParaDTO(usuario);
@@ -38,7 +39,8 @@ public class UsuarioService {
                 usuario.getNome(),
                 usuario.getEmail(),
                 usuario.getTelefone(),
-                usuario.getStatusUsuario()
+                usuario.getStatusUsuario(),
+                usuario.getTipo()
         );
     }
 }
