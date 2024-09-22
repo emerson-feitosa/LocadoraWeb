@@ -1,8 +1,6 @@
 package br.com.locadora.web.dtos;
 
-import br.com.locadora.web.enums.StatusLocacao;
-import br.com.locadora.web.enums.StatusUsuario;
-import br.com.locadora.web.enums.TipoVeiculo;
+import br.com.locadora.web.enums.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDate;
@@ -18,6 +16,7 @@ public record CreateLocacaoDto(Long id,
                                String modeloVeiculo,
                                String placaVeiculo,
                                TipoVeiculo tipoVeiculo,
+                               StatusVeiculo statusVeiculo,
 
                                @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
                                LocalDate dataInicio,
@@ -27,6 +26,7 @@ public record CreateLocacaoDto(Long id,
                                Integer diasLocacao,
                                StatusLocacao status,
 
-                               Long financeiroId
+                               Long financeiroId,
+                               StatusFinanceiro statusFianceiro
                                ) {
 }
