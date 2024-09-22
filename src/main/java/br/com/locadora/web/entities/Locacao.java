@@ -24,7 +24,7 @@ public class Locacao {
     private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "usuaruo_id", nullable = false)
+    @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -38,6 +38,9 @@ public class Locacao {
     @Column(nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
     private LocalTime horaInicio;
+
+    @Column(nullable = false)
+    private Integer diasLocacao;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataFim;
