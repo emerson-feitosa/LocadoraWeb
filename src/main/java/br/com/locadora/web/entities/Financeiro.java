@@ -23,7 +23,7 @@ public class Financeiro {
     private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "usuario_id", nullable = false)
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -31,7 +31,7 @@ public class Financeiro {
     private Veiculo veiculo;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "manutencao_id", nullable = false)
+    @JoinColumn(name = "manutencao_id")
     private Manutencao manutencao;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")

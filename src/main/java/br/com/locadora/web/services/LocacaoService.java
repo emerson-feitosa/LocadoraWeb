@@ -2,20 +2,14 @@ package br.com.locadora.web.services;
 
 import br.com.locadora.web.dtos.CreateLocacaoDto;
 import br.com.locadora.web.dtos.CreateUserDto;
-import br.com.locadora.web.entities.Financeiro;
-import br.com.locadora.web.entities.Locacao;
-import br.com.locadora.web.entities.Usuario;
-import br.com.locadora.web.entities.Veiculo;
+import br.com.locadora.web.entities.*;
 import br.com.locadora.web.enums.StatusFinanceiro;
 import br.com.locadora.web.enums.StatusLocacao;
 import br.com.locadora.web.enums.StatusUsuario;
 import br.com.locadora.web.enums.StatusVeiculo;
 import br.com.locadora.web.exception.UserNotFoundException;
 import br.com.locadora.web.exception.VeiculoNotFoundException;
-import br.com.locadora.web.repository.FinanceiroRepository;
-import br.com.locadora.web.repository.LocacaoRepository;
-import br.com.locadora.web.repository.UsuarioRepository;
-import br.com.locadora.web.repository.VeiculoRepository;
+import br.com.locadora.web.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +29,9 @@ public class LocacaoService {
     private FinanceiroRepository financeiroRepository;
 
     @Autowired
+    private ManutencaoRepository manutencaoRepository;
+
+    @Autowired
     private LocacaoRepository locacaoRepository;
 
 
@@ -43,16 +40,22 @@ public class LocacaoService {
                 .orElseThrow(UserNotFoundException::new);
 
         usuario.setStatusUsuario(StatusUsuario.DEVEDOR);
+        usuarioRepository.save(usuario);
 
-        Veiculo veiculo = veiculoRepository.findById(locacaoDto.financeiroId())
+        Veiculo veiculo = veiculoRepository.findById(locacaoDto.veiculoId())
                 .orElseThrow(VeiculoNotFoundException::new);
 
         veiculo.setStatus(StatusVeiculo.ALUGADO);
+        veiculoRepository.save(veiculo);
+
 
         Financeiro financeiro = new Financeiro();
         financeiro.setValorLocacaoVeiculo(veiculo.getPrecoLocacaoPorDia());
         financeiro.setStatus(StatusFinanceiro.PENDENTE_PAGAMENTO);
+        financeiro.setUsuario(usuario);
+        financeiro.setVeiculo(veiculo);
         financeiroRepository.save(financeiro);
+
 
         Locacao locacao = new Locacao();
 
