@@ -17,6 +17,10 @@ public class Manutencao {
     @Column(nullable = false)
     private TipoManutencao tipo;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "veiculo_id", nullable = false)
+    private Veiculo veiculo;
+
     @Column(nullable = false)
     private LocalDate dataInicio;
 

@@ -26,10 +26,6 @@ public class Financeiro {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "veiculo_id", nullable = false)
-    private Veiculo veiculo;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "manutencao_id")
     private Manutencao manutencao;
@@ -52,5 +48,7 @@ public class Financeiro {
 
     private Double valorTotalFatura;
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private StatusFinanceiro status;
 }

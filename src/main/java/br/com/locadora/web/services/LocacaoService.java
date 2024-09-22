@@ -53,7 +53,6 @@ public class LocacaoService {
         financeiro.setValorLocacaoVeiculo(veiculo.getPrecoLocacaoPorDia());
         financeiro.setStatus(StatusFinanceiro.PENDENTE_PAGAMENTO);
         financeiro.setUsuario(usuario);
-        financeiro.setVeiculo(veiculo);
         financeiroRepository.save(financeiro);
 
 
